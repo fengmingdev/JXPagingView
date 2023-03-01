@@ -6,8 +6,6 @@
 //  Copyright © 2018年 jiaxin. All rights reserved.
 //
 
-import UIKit
-
 open class JXPagingListRefreshView: JXPagingView {
     private var lastScrollingListViewContentOffsetY: CGFloat = 0
 
@@ -65,7 +63,9 @@ open class JXPagingListRefreshView: JXPagingView {
                 if (mainTableView.contentOffset.y < mainTableViewMaxContentOffsetY()) {
                     //mainTableView的header还没有消失，让listScrollView一直为0
                     setListScrollViewToMinContentOffsetY(currentScrollingListView)
-                    currentScrollingListView.showsVerticalScrollIndicator = false;
+                    if automaticallyDisplayListVerticalScrollIndicator {
+                        currentScrollingListView.showsVerticalScrollIndicator = false
+                    }
                 }
             }
         }
@@ -75,12 +75,16 @@ open class JXPagingListRefreshView: JXPagingView {
                 if currentScrollingListView.contentOffset.y > minContentOffsetYInListScrollView(currentScrollingListView) {
                     //mainTableView的header还没有消失，让listScrollView一直为0
                     setListScrollViewToMinContentOffsetY(currentScrollingListView)
-                    currentScrollingListView.showsVerticalScrollIndicator = false;
+                    if automaticallyDisplayListVerticalScrollIndicator {
+                        currentScrollingListView.showsVerticalScrollIndicator = false;
+                    }
                 }
             } else {
                 //mainTableView的header刚好消失，固定mainTableView的位置，显示listScrollView的滚动条
                 setMainTableViewToMaxContentOffsetY()
-                currentScrollingListView.showsVerticalScrollIndicator = true;
+                if automaticallyDisplayListVerticalScrollIndicator {
+                    currentScrollingListView.showsVerticalScrollIndicator = true
+                }
             }
         }
         lastScrollingListViewContentOffsetY = currentScrollingListView.contentOffset.y;
