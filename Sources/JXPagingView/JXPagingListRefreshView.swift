@@ -6,6 +6,7 @@
 //  Copyright © 2018年 jiaxin. All rights reserved.
 //
 
+
 open class JXPagingListRefreshView: JXPagingView {
     private var lastScrollingListViewContentOffsetY: CGFloat = 0
 
@@ -89,5 +90,4 @@ open class JXPagingListRefreshView: JXPagingView {
         }
         lastScrollingListViewContentOffsetY = currentScrollingListView.contentOffset.y;
     }
-
 }
